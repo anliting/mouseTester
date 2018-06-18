@@ -1,6 +1,8 @@
 import{dom}from'https://gitcdn.link/cdn/anliting/simple.js/5ffa9085990ca94f4a842d4bc893f5e87048b3b5/src/simple.static.js'
 function MouseTester(){
     let
+        xPassedLayer,
+        yPassedLayer,
         mouseXPositionAxis,
         mouseYPositionAxis,
         passedX={},
@@ -15,7 +17,7 @@ function MouseTester(){
                 if(!passedX[e.clientX]){
                     passedX[e.clientX]=1
                     dom(
-                        mouseTester.node,
+                        xPassedLayer,
                         dom.div({
                             className:'axis verticalAxis',
                         },n=>{
@@ -27,7 +29,7 @@ function MouseTester(){
                 if(!passedY[e.clientY]){
                     passedY[e.clientY]=1
                     dom(
-                        mouseTester.node,
+                        yPassedLayer,
                         dom.div({
                             className:'axis horizontalAxis',
                         },n=>{
@@ -38,6 +40,8 @@ function MouseTester(){
                 }
             },
         },
+        xPassedLayer=dom.div(),
+        yPassedLayer=dom.div(),
         mouseXPositionAxis=dom.div({
             className:'axis verticalAxis'
         }),
@@ -51,16 +55,16 @@ MouseTester.style=`
         position:relative;
         overflow:hidden;
     }
-    .mouseTester>.axis{
+    .mouseTester .axis{
         position:absolute;
         background-color:black;
     }
-    .mouseTester>.horizontalAxis{
+    .mouseTester .horizontalAxis{
         width:100%;
         height:1px;
         left:0;
     }
-    .mouseTester>.verticalAxis{
+    .mouseTester .verticalAxis{
         width:1px;
         height:100%;
         top:0;
